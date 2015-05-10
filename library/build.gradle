@@ -27,7 +27,7 @@ dependencies {
 
 //publish library to jcenter
 version "1.0"
-group "com.github.derlio.waveform"
+group "com.github.derlio"
 
 def siteUrl = "https://github.com/derlio/audio-waveform"
 def gitUrl = "https://github.com/derlio/audio-waveform.git"
