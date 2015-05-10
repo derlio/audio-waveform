@@ -11,32 +11,31 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.daimajia.numberprogressbar.NumberProgressBar;
-import com.github.derlio.waveform.SamplePlayer;
-import com.github.derlio.waveform.WaveformView;
+import com.github.derlio.waveform.SimpleWaveformView;
 import com.github.derlio.waveform.soundfile.SoundFile;
 
 import java.io.File;
 import java.io.IOException;
 
 
-public class MainActivity extends ActionBarActivity implements WaveformView.WaveformListener {
+public class MainActivity extends ActionBarActivity implements SimpleWaveformView.WaveformListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
-    private WaveformView mWaveformView;
+    private SimpleWaveformView mWaveformView;
     private NumberProgressBar mLoadFileProgressBar;
     private int mStartPos;
     private int mEndPos;
     private int mOffset;
     private boolean mIsPlaying;
-    private SamplePlayer mPlayer;
+    private MediaPlayer mPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mWaveformView = (WaveformView) findViewById(R.id.waveform);
-        mWaveformView.setListener(this);
+        mWaveformView = (SimpleWaveformView) findViewById(R.id.waveform);
+        mWaveformView.setWaveformListener(this);
 
         mLoadFileProgressBar = (NumberProgressBar) findViewById(R.id.load_file_progressbar);
         mLoadFileProgressBar.setMax(100);
@@ -78,24 +77,15 @@ public class MainActivity extends ActionBarActivity implements WaveformView.Wave
                             DisplayMetrics metrics = new DisplayMetrics();
                             getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-                            mWaveformView.setSoundFile(soundFile);
-                            mWaveformView.recomputeHeights(metrics.density);
+                            mWaveformView.setAudioFile(soundFile);
 
-                            mWaveformView.setZoomLevel(3);
-
-                            mEndPos = mWaveformView.maxPos();
-                            mStartPos = 0;
-                            mOffset = 0;
-
-                            mWaveformView.setParameters(mStartPos, mEndPos, mOffset);
-                            Log.i(TAG, "getNumSamples:" + soundFile.getNumSamples());
-
-
-                            MediaPlayer mPlayer = new MediaPlayer();
+                            mPlayer = new MediaPlayer();
                             try {
                                 mPlayer.setDataSource(file.getPath());
                                 mPlayer.prepare();
                                 mPlayer.start();
+                                mIsPlaying = true;
+                                updateDisplay();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -115,14 +105,13 @@ public class MainActivity extends ActionBarActivity implements WaveformView.Wave
 
 
     private synchronized void updateDisplay() {
-        if (mIsPlaying) {
+        if (mIsPlaying && mPlayer != null) {
             int now = mPlayer.getCurrentPosition();
-            int frames = mWaveformView.millisecsToPixels(now);
-            mWaveformView.setPlayback(frames);
+            mWaveformView.setPlaybackPosition(now);
         }
-
-        mWaveformView.setParameters(mStartPos, mEndPos, mOffset);
-        mWaveformView.invalidate();
+//
+//        mWaveformView.setParameters(mStartPos, mEndPos, mOffset);
+//        mWaveformView.invalidate();
 
     }
 
@@ -150,39 +139,9 @@ public class MainActivity extends ActionBarActivity implements WaveformView.Wave
     }
 
     @Override
-    public void waveformTouchStart(float x) {
-
-    }
-
-    @Override
-    public void waveformTouchMove(float x) {
-
-    }
-
-    @Override
-    public void waveformTouchEnd() {
-
-    }
-
-    @Override
-    public void waveformFling(float x) {
-
-    }
-
-    @Override
-    public void waveformDraw() {
+    public void onWaveformDraw() {
         if (mIsPlaying) {
             updateDisplay();
         }
-    }
-
-    @Override
-    public void waveformZoomIn() {
-
-    }
-
-    @Override
-    public void waveformZoomOut() {
-
     }
 }
