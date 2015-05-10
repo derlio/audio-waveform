@@ -6,7 +6,7 @@
 <br/>
 ##How
 * Add this to your build.gradle</br>
-`compile 'com.github.derlio.waveform:library:1.0@aar'`
+`compile 'com.github.derlio.waveform:library:1.0.1@aar'`
 * Use **SimpleWaveformView** in your layout<br/>
 ```
         <com.github.derlio.waveform.SimpleWaveformView
