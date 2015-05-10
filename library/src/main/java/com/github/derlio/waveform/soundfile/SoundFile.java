@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package fm.jiecao.audio.waveform.library.soundfile;
+package com.github.derlio.waveform.soundfile;
 
 import android.media.AudioFormat;
 import android.media.AudioRecord;

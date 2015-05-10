@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package fm.jiecao.audio.waveform.library.soundfile;
+package com.github.derlio.waveform.soundfile;
 
 class Atom {  // note: latest versions of spec simply call it 'box' instead of 'atom'.
     private int mSize;  // includes atom header (8 bytes)

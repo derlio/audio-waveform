@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package fm.jiecao.audio.waveform.library;
+package com.github.derlio.waveform;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -27,7 +27,8 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 
-import fm.jiecao.audio.waveform.library.soundfile.SoundFile;
+import com.github.derlio.waveform.soundfile.SoundFile;
+
 
 /**
  * WaveformView is an Android view that displays a visual representation

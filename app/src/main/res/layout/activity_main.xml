@@ -8,7 +8,7 @@
     <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <fm.jiecao.audio.waveform.library.WaveformView
+    <com.github.derlio.waveform.WaveformView
         android:id="@+id/waveform"
         android:layout_width="match_parent"
         android:layout_height="200dp" />

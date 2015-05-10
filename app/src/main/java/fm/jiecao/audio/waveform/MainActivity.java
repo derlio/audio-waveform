@@ -7,12 +7,12 @@ import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.github.derlio.waveform.SamplePlayer;
+import com.github.derlio.waveform.WaveformView;
+import com.github.derlio.waveform.soundfile.SoundFile;
+
 import java.io.File;
 import java.io.IOException;
-
-import fm.jiecao.audio.waveform.library.SamplePlayer;
-import fm.jiecao.audio.waveform.library.WaveformView;
-import fm.jiecao.audio.waveform.library.soundfile.SoundFile;
 
 
 public class MainActivity extends ActionBarActivity {
