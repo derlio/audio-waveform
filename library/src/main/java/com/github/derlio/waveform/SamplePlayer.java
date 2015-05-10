@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package fm.jiecao.audio.waveform.library;
+package com.github.derlio.waveform;
 
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioTrack;
 
-import java.nio.ShortBuffer;
+import com.github.derlio.waveform.soundfile.SoundFile;
 
-import fm.jiecao.audio.waveform.library.soundfile.SoundFile;
+import java.nio.ShortBuffer;
 
 public class SamplePlayer {
     public interface OnCompletionListener {
